@@ -1,4 +1,6 @@
 class TracToMarkdown
+  attr_reader :output
+
   def self.convert(input)
     self.new(input).convert
   end
@@ -12,6 +14,7 @@ class TracToMarkdown
   end
 
   def convert_inline_code_block
-    @output.gsub!(/\{\{\{([^\n]+?)\}\}\}/, '`\1\`')
+    @output.gsub!(/\{\{\{([^\n]+?)\}\}\}/, '`\1`')
+    self
   end
 end
