@@ -105,4 +105,21 @@ fuga
       expect(TracToMarkdown.new(@input).convert_headings).to eq @output
     end
   end
+
+  describe "convert_links" do
+    before do
+      @input = <<-EOS
+[https://example.com Example]
+hoge[https://example.com Example]fuga
+      EOS
+
+      @output = <<-EOS
+[Example](https://example.com)
+hoge[Example](https://example.com)fuga
+      EOS
+    end
+    it do
+      expect(TracToMarkdown.new(@input).convert_links).to eq @output
+    end
+  end
 end

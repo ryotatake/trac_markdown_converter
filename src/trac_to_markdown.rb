@@ -36,4 +36,8 @@ class TracToMarkdown
     @output.gsub!(/^\s*\=\=\s(.+?)/, '## \1')
     @output.gsub!(/^\s*\=\s(.+?)/, '# \1')
   end
+
+  def convert_links
+    @output.gsub!(/\[(http?[^\s\[\]]+)\s([^\[\]]+)\]/, '[\2](\1)')
+  end
 end
