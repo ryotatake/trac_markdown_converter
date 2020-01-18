@@ -15,6 +15,20 @@ class TracToMarkdown
 
   def convert_inline_code_block
     @output.gsub!(/\{\{\{([^\n]+?)\}\}\}/, '`\1`')
-    self
+  end
+
+  def convert_headings
+    @output.gsub!(/^\s*\=\=\=\=\=\=\s(.+?)\s\=\=\=\=\=\=\s*$/, '###### \1')
+    @output.gsub!(/^\s*\=\=\=\=\=\s(.+?)\s\=\=\=\=\=\s*$/, '##### \1')
+    @output.gsub!(/^\s*\=\=\=\=\s(.+?)\s\=\=\=\=\s*$/, '#### \1')
+    @output.gsub!(/^\s*\=\=\=\s(.+?)\s\=\=\=\s*$/, '### \1')
+    @output.gsub!(/^\s*\=\=\s(.+?)\s\=\=\s*$/, '## \1')
+    @output.gsub!(/^\s*\=\s(.+?)\s\=\s*$/, '# \1')
+    @output.gsub!(/^\s*\=\=\=\=\=\=\s(.+?)/, '###### \1')
+    @output.gsub!(/^\s*\=\=\=\=\=\s(.+?)/, '##### \1')
+    @output.gsub!(/^\s*\=\=\=\=\s(.+?)/, '#### \1')
+    @output.gsub!(/^\s*\=\=\=\s(.+?)/, '### \1')
+    @output.gsub!(/^\s*\=\=\s(.+?)/, '## \1')
+    @output.gsub!(/^\s*\=\s(.+?)/, '# \1')
   end
 end
