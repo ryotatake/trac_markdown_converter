@@ -28,6 +28,35 @@ multiline_code_block
     end
   end
 
+  describe "convert_multiline_code_block" do
+    before do
+      @input = <<-EOS
+{{{
+multiline_code_block
+}}}
+{{{
+multiline_code_block
+hoge
+fuga
+}}}
+      EOS
+
+      @output = <<-EOS
+```
+multiline_code_block
+```
+```
+multiline_code_block
+hoge
+fuga
+```
+      EOS
+    end
+    it do
+      expect(TracToMarkdown.new(@input).convert_multiline_code_block).to eq @output
+    end
+  end
+
   describe "convert_headings" do
     before do
       @input = <<-EOS

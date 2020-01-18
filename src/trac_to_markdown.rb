@@ -17,6 +17,11 @@ class TracToMarkdown
     @output.gsub!(/\{\{\{([^\n]+?)\}\}\}/, '`\1`')
   end
 
+  def convert_multiline_code_block
+    # .は改行を除く任意の一文字。mオプションをつけると改行にもマッチする。
+    @output.gsub!(/\{\{\{(.+?)\}\}\}/m, '```\1```')
+  end
+
   def convert_headings
     @output.gsub!(/^\s*\=\=\=\=\=\=\s(.+?)\s\=\=\=\=\=\=\s*$/, '###### \1')
     @output.gsub!(/^\s*\=\=\=\=\=\s(.+?)\s\=\=\=\=\=\s*$/, '##### \1')
