@@ -14,6 +14,7 @@ class TracToMarkdown
     convert_inline_code_block
     convert_multiline_code_block
     convert_headings
+    convert_links
 
     output
   end
