@@ -11,6 +11,11 @@ class TracToMarkdown
   end
 
   def convert
+    convert_inline_code_block
+    convert_multiline_code_block
+    convert_headings
+
+    output
   end
 
   def convert_inline_code_block
@@ -37,3 +42,8 @@ class TracToMarkdown
     @output.gsub!(/^\s*\=\s(.+?)/, '# \1')
   end
 end
+
+input = STDIN.read
+output = TracToMarkdown.convert(input)
+
+STDOUT.write(output)
